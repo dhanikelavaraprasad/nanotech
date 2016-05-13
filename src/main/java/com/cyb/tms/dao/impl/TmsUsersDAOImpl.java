@@ -5,12 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import com.cyb.tms.dao.TmsUsersDAO;
 import com.cyb.tms.entity.TmsUsers;
-import com.cyb.tms.utils.HibernateUtil;
+import com.cyb.tms.util.HibernateUtil;
 
 @Repository
 public class TmsUsersDAOImpl implements TmsUsersDAO {
 
-private static final String USER_NAME = "username";
+private static final String USER_NAME = "userName";
 	
 	@Autowired
     private HibernateUtil hibernateUtil;

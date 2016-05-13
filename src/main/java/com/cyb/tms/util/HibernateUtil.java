@@ -1,4 +1,4 @@
-package com.cyb.tms.utils;
+package com.cyb.tms.util;
 
 import java.io.Serializable;
 import java.util.List;

@@ -17,8 +17,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("com.cyb.tms")
-@PropertySource("classpath:hibernate.properties")
+@ComponentScan(basePackages = { "com.cyb.tms.*" })
+@PropertySource({ 
+	"classpath:hibernate.properties",
+	"classpath:application.properties"
+})
 public class HibernateConfig {
 	
 	@Value("${database.driverClass}")
@@ -39,7 +42,8 @@ public class HibernateConfig {
 	private String PROPERTY_HIBERNATE_FORMAT_SQL;
 	@Value("${entitymanager.packages.to.scan}")
     private String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN;// = "entitymanager.packages.to.scan";
-    
+	
+
 	
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer placeHolderConfigurer() {

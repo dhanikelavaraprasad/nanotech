@@ -41,15 +41,19 @@ public class AuthenticationTokenFilter extends
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		String authToken = httpRequest.getHeader(tokenHeader);
+		httpResponse.setHeader("Access-Control-Allow-Origin", "*");
+		httpResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
+		httpResponse.setHeader("Access-Control-Max-Age", "3600");
+		httpResponse.setHeader("Access-Control-Allow-Headers", "Origin, Accept, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, "+tokenHeader);
+		
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		String authToken = httpRequest.getHeader("X-Auth-Token");
 		String username = this.tokenUtils.getUsernameFromToken(authToken);
 
 
 		if (username != null
 				&& SecurityContextHolder.getContext().getAuthentication() == null) {
-			try {
 				UserDetails userDetails = this.userDetailsService
 						.loadUserByUsername(username);
 				if (this.tokenUtils.validateToken(authToken, userDetails)) {
@@ -61,18 +65,8 @@ public class AuthenticationTokenFilter extends
 					SecurityContextHolder.getContext().setAuthentication(
 							authentication);
 				}
-				
-				chain.doFilter(request, response);
-			} catch (AuthenticationException authenticationException) {
-				SecurityContextHolder.clearContext();
-				restAuthenticationEntryPoint.commence(httpRequest, httpResponse,
-				 authenticationException);
-			}
-		} else {
-			restAuthenticationEntryPoint.commence(httpRequest, httpResponse,
-					 null);
-			
-		}
+		} 
+		chain.doFilter(request, response);
 
 	}
 

@@ -22,7 +22,7 @@
 		<dispatcher>ERROR</dispatcher>
 	</filter-mapping> -->
 
-	<filter>
+	<!-- <filter>
 		<filter-name>CORS</filter-name>
 		<filter-class>com.cyb.tms.init.CORSFilter</filter-class>
 	</filter>
@@ -30,5 +30,5 @@
 	<filter-mapping>
 		<filter-name>CORS</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 </web-app>

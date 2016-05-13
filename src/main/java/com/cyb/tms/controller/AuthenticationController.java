@@ -23,13 +23,14 @@ import com.cyb.tms.security.TokenUtils;
 import com.cyb.tms.security.json.AuthenticationRequest;
 import com.cyb.tms.security.json.AuthenticationResponse;
 import com.cyb.tms.security.model.CybUsers;
+import com.cyb.tms.util.URIConstants;
 
 
 
 
 
 @RestController
-@RequestMapping("${tms.route.authentication}")
+@RequestMapping(URIConstants.ROUTE_AUTH)
 public class AuthenticationController {
 	
 	  private final Logger logger = LoggerFactory.getLogger(AuthenticationController.class.getName());
@@ -70,7 +71,7 @@ public class AuthenticationController {
 		}
 	  }
 
-	  @RequestMapping(value = "${tms.route.authentication.refresh}", method = RequestMethod.GET)
+	  @RequestMapping(value = URIConstants.ROUTE_AUTH_REFRESH, method = RequestMethod.GET)
 	  public ResponseEntity<?> authenticationRequest(HttpServletRequest request) {
 		  logger.info("route.authentication.refresh-start");
 	    String token = request.getHeader(tokenHeader);
