@@ -53,7 +53,7 @@ public class HibernateUtil {
     	List<?> list = null;
     	list = sessionFactory.getCurrentSession().createCriteria(entityClass)
     						.add(Restrictions.eq(propertyName, name)).list();
-    	return (T) ((list != null) ? list.get(0) : list);
+    	return (T) ((list != null && list.size() > 0) ? list.get(0) : null);
     	
     	
     }
