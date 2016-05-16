@@ -2,6 +2,7 @@ package com.cyb.tms.init;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -25,6 +26,7 @@ import com.cyb.tms.security.service.SecurityService;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@ComponentScan("com.cyb.tms.*")
 @PropertySource("classpath:application.properties")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
@@ -86,6 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	      .authorizeRequests()
 	        .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 	        .antMatchers("/api/auth/**").permitAll()
+	        .antMatchers("/api/protected").access("hasRole('ADMIN')")
 	        .anyRequest().authenticated();
 
 	    // Custom JWT based authentication
