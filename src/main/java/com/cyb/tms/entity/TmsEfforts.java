@@ -1,5 +1,5 @@
 package com.cyb.tms.entity;
-// Generated May 12, 2016 11:55:51 AM by Hibernate Tools 4.3.1.Final
+// Generated May 17, 2016 12:38:28 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -23,7 +23,6 @@ import com.cyb.tms.entity.base.BaseEntity;
 @Table(name = "tms_efforts", catalog = "TaskManagement")
 public class TmsEfforts extends BaseEntity {
 
-	
 	/**
 	 * 
 	 */

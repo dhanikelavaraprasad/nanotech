@@ -1,5 +1,5 @@
 package com.cyb.tms.entity;
-// Generated May 12, 2016 11:55:51 AM by Hibernate Tools 4.3.1.Final
+// Generated May 17, 2016 12:38:28 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -27,7 +27,7 @@ public class TmsSprintMst extends BaseEntity {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5340536044528825294L;
+	private static final long serialVersionUID = -9012000666173512555L;
 	private Long sprintId;
 	private Date sprintEndDate;
 	private int sprintHours;
@@ -38,6 +38,7 @@ public class TmsSprintMst extends BaseEntity {
 	private Set<TmsLeaveMst> tmsLeaveMsts = new HashSet<TmsLeaveMst>(0);
 	private Set<TmsSprintUser> tmsSprintUsers = new HashSet<TmsSprintUser>(0);
 	private Set<TmsEfforts> tmsEffortses = new HashSet<TmsEfforts>(0);
+	private Set<UserStoryStaus> userStoryStauses = new HashSet<UserStoryStaus>(0);
 
 	public TmsSprintMst() {
 	}
@@ -54,7 +55,7 @@ public class TmsSprintMst extends BaseEntity {
 
 	public TmsSprintMst(Date sprintEndDate, int sprintHours, String sprintName, Date sprintStartDate,
 			String sprintStatus, int sprintVelocity, Set<TmsLeaveMst> tmsLeaveMsts, Set<TmsSprintUser> tmsSprintUsers,
-			Set<TmsEfforts> tmsEffortses) {
+			Set<TmsEfforts> tmsEffortses, Set<UserStoryStaus> userStoryStauses) {
 		this.sprintEndDate = sprintEndDate;
 		this.sprintHours = sprintHours;
 		this.sprintName = sprintName;
@@ -64,6 +65,7 @@ public class TmsSprintMst extends BaseEntity {
 		this.tmsLeaveMsts = tmsLeaveMsts;
 		this.tmsSprintUsers = tmsSprintUsers;
 		this.tmsEffortses = tmsEffortses;
+		this.userStoryStauses = userStoryStauses;
 	}
 
 	@Id
@@ -159,6 +161,15 @@ public class TmsSprintMst extends BaseEntity {
 
 	public void setTmsEffortses(Set<TmsEfforts> tmsEffortses) {
 		this.tmsEffortses = tmsEffortses;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tmsSprintMst")
+	public Set<UserStoryStaus> getUserStoryStauses() {
+		return this.userStoryStauses;
+	}
+
+	public void setUserStoryStauses(Set<UserStoryStaus> userStoryStauses) {
+		this.userStoryStauses = userStoryStauses;
 	}
 
 }

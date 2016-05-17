@@ -1,5 +1,5 @@
 package com.cyb.tms.entity;
-// Generated May 12, 2016 11:55:51 AM by Hibernate Tools 4.3.1.Final
+// Generated May 17, 2016 12:38:28 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -24,24 +24,26 @@ import com.cyb.tms.entity.base.BaseEntity;
 @Table(name = "tms_project", catalog = "TaskManagement")
 public class TmsProject extends BaseEntity {
 
-	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5503305165264534310L;
-	
+	private static final long serialVersionUID = -807529177177062214L;
 	private Long pid;
 	private String name;
 	private Date startDate;
-	private Set<TmsUsers> tmsUserses = new HashSet<TmsUsers>(0);
+	private String projectDesc;
+	private Date endDate;
+	private Set<TmsModule> tmsModules = new HashSet<TmsModule>(0);
 
 	public TmsProject() {
 	}
 
-	public TmsProject(String name, Date startDate, Set<TmsUsers> tmsUserses) {
+	public TmsProject(String name, Date startDate, String projectDesc, Date endDate, Set<TmsModule> tmsModules) {
 		this.name = name;
 		this.startDate = startDate;
-		this.tmsUserses = tmsUserses;
+		this.projectDesc = projectDesc;
+		this.endDate = endDate;
+		this.tmsModules = tmsModules;
 	}
 
 	@Id
@@ -75,13 +77,32 @@ public class TmsProject extends BaseEntity {
 		this.startDate = startDate;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tmsProject")
-	public Set<TmsUsers> getTmsUserses() {
-		return this.tmsUserses;
+	@Column(name = "PROJECT_DESC", length = 100)
+	public String getProjectDesc() {
+		return this.projectDesc;
 	}
 
-	public void setTmsUserses(Set<TmsUsers> tmsUserses) {
-		this.tmsUserses = tmsUserses;
+	public void setProjectDesc(String projectDesc) {
+		this.projectDesc = projectDesc;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "END_DATE", length = 10)
+	public Date getEndDate() {
+		return this.endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tmsProject")
+	public Set<TmsModule> getTmsModules() {
+		return this.tmsModules;
+	}
+
+	public void setTmsModules(Set<TmsModule> tmsModules) {
+		this.tmsModules = tmsModules;
 	}
 
 }

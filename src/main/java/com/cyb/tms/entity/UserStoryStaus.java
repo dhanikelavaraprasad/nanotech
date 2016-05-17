@@ -1,5 +1,5 @@
 package com.cyb.tms.entity;
-// Generated May 12, 2016 11:55:51 AM by Hibernate Tools 4.3.1.Final
+// Generated May 17, 2016 12:38:28 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -26,8 +26,9 @@ public class UserStoryStaus extends BaseEntity {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1330920914636441225L;
+	private static final long serialVersionUID = 4615921091199109107L;
 	private Long id;
+	private TmsSprintMst tmsSprintMst;
 	private TmsStatusMst tmsStatusMst;
 	private TmsUsers tmsUsers;
 	private String jiraId;
@@ -45,6 +46,16 @@ public class UserStoryStaus extends BaseEntity {
 		this.type = type;
 	}
 
+	public UserStoryStaus(TmsSprintMst tmsSprintMst, TmsStatusMst tmsStatusMst, TmsUsers tmsUsers, String jiraId,
+			Date modifiedDate, String type) {
+		this.tmsSprintMst = tmsSprintMst;
+		this.tmsStatusMst = tmsStatusMst;
+		this.tmsUsers = tmsUsers;
+		this.jiraId = jiraId;
+		this.modifiedDate = modifiedDate;
+		this.type = type;
+	}
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
@@ -55,6 +66,16 @@ public class UserStoryStaus extends BaseEntity {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "SPRINT_ID")
+	public TmsSprintMst getTmsSprintMst() {
+		return this.tmsSprintMst;
+	}
+
+	public void setTmsSprintMst(TmsSprintMst tmsSprintMst) {
+		this.tmsSprintMst = tmsSprintMst;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

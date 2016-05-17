@@ -16,7 +16,6 @@ import com.cyb.tms.service.TmsUserService;
 import com.cyb.tms.util.URIConstants;
 
 @RestController
-@RequestMapping()
 public class TmsUserController {
 	
 	@Autowired
@@ -37,7 +36,7 @@ public class TmsUserController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 	
-	 @RequestMapping(value = URIConstants.GET_ALL_USER, method = RequestMethod.GET)
+	 @RequestMapping(value = URIConstants.GET_ALL_USERS, method = RequestMethod.GET)
 	    public ResponseEntity<List<TmsUsers>> listAllUsers() {
 	        List<TmsUsers> users = tmsUserService.getAllUsers();
 	        if(users.isEmpty()){
